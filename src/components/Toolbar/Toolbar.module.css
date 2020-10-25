@@ -1,0 +1,41 @@
+.Toolbar {
+    height: 56px;
+    width: 100%;
+    background-color: #24292E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.Toolbar nav {
+    height: 100%;
+}
+
+.Toolbar nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.Toolbar nav ul a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0 15px;
+}
+
+.Logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.Logo img {
+    height: 45px;
+    width: auto;
+}

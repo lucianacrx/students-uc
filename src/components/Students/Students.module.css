@@ -1,0 +1,34 @@
+.GridContainer {
+    display: grid;
+    row-gap: 10px;
+    column-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    width: 90%;
+}
+
+.Divider {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin-left: 0;
+}
+
+.UserItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgb(228, 228, 228);
+}
+
+.UserItem img {
+    border-radius: 50%;
+    height: 50px;
+    width: auto;
+    float: left;
+    padding-right: 15px;
+}
