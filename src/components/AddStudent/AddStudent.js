@@ -4,34 +4,34 @@ import StudentService from '../../services/student.service';
 import { useInput } from '../../hooks/useInput';
 
 const AddStudent = () => {
-    const { value: name, bind: bindName, reset: resetName } = useInput('');
+    const { value: firstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
     const { value: lastName, bind: bindLastName, reset: resetLastName } = useInput('');
-    const { value: birthday, bind: bindBirthday, reset: resetBirthday } = useInput('');
+    const { value: birthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
     const { value: gender, bind: bindGender, reset: resetGender } = useInput('');
     const { value: studentId, bind: bindStudentId, reset: resetStudentId } = useInput('');
-    const { value: career, bind: bindCareer, reset: resetCarreer } = useInput('');
-    const { value: phone, bind: bindPhone, reset: resetPhone } = useInput('');
+    const { value: collageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
+    const { value: phoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
 
     const add = () => {
         const student = {
-            name: name,
+            firstName: firstName,
             lastName: lastName,
-            birthday: birthday,
+            birthDate: birthDate,
             gender: gender,
             studentId: studentId,
-            career: career,
-            phone: phone
+            collageCareer: collageCareer,
+            phoneNumber: phoneNumber
         };
 
         StudentService.create(student)
             .then(response => {
-                resetName();
+                resetFirstName();
                 resetLastName();
-                resetBirthday();
+                resetBirthDate();
                 resetGender();
                 resetStudentId();
-                resetCarreer();
-                resetPhone();
+                resetCollageCareer();
+                resetPhoneNumber();
                 this.props.history.push("/");
             })
             .catch(error => {
@@ -47,9 +47,9 @@ const AddStudent = () => {
             <form>
                 <div>
                     <div className="form-group row">
-                        <label htmlFor="name" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
+                        <label htmlFor="firstName" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control" id="name" {...bindName} />
+                            <input type="text" className="form-control" id="firstName" {...bindFirstName} />
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@ const AddStudent = () => {
                     <div className="form-group row">
                         <label htmlFor="birthday" className="col-sm-2 col-form-label"><strong>Fecha de nacimiento:</strong></label>
                         <div className="col-sm-10">
-                            <input type="date" className="form-control" id="birthday" {...bindBirthday} />
+                            <input type="date" className="form-control" id="birthday" {...bindBirthDate} />
                         </div>
                     </div>
 
@@ -82,16 +82,16 @@ const AddStudent = () => {
                     </div>
 
                     <div className="form-group row">
-                        <label htmlFor="carrer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
+                        <label htmlFor="collageCareer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control" id="carrer" {...bindCareer} />
+                            <input type="text" className="form-control" id="collageCareer" {...bindCollageCareer} />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label htmlFor="phone" className="col-sm-2 col-form-label"><strong>Teléfono:</strong></label>
                         <div className="col-sm-10">
-                            <input type="tel" className="form-control" id="phone" {...bindPhone} />
+                            <input type="tel" className="form-control" id="phone" {...bindPhoneNumber} />
                         </div>
                     </div>
                 </div>

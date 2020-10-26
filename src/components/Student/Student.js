@@ -5,12 +5,12 @@ import StudentService from '../../services/student.service';
 import { useInput } from '../../hooks/useInput';
 
 const Student = (props) => {
-    const { value: name, bind: bindName, reset: resetName } = useInput('');
+    const { value: firstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
     const { value: lastName, bind: bindLastName, reset: resetLastName } = useInput('');
-    const { value: birthday, bind: bindBirthday, reset: resetBirthday } = useInput('');
+    const { value: birthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
     const { value: gender, bind: bindGender, reset: resetGender } = useInput('');
-    const { value: career, bind: bindCareer, reset: resetCarreer } = useInput('');
-    const { value: phone, bind: bindPhone, reset: resetPhone } = useInput('');
+    const { value: collageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
+    const { value: phoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
     const [ currentStudent, setCurrentStudent ] = useState({});
 
     useEffect(() => {    
@@ -22,22 +22,22 @@ const Student = (props) => {
 
     const edit = () => {
         const student = {
-            name: name,
+            firstName: firstName,
             lastName: lastName,
-            birthday: birthday,
+            birthDate: birthDate,
             gender: gender,
-            career: career,
-            phone: phone
+            collageCareer: collageCareer,
+            phoneNumber: phoneNumber
         }
 
         StudentService.update(props.match.params.id, student)
             .then(response => {
-                resetName();
+                resetFirstName();
                 resetLastName();
-                resetBirthday();
+                resetBirthDate();
                 resetGender();
-                resetCarreer();
-                resetPhone();
+                resetCollageCareer();
+                resetPhoneNumber();
                 this.props.history.push("/");
             })
             .catch(error => {
@@ -65,9 +65,9 @@ const Student = (props) => {
                     <div className={classes.InfoContainer}>
                         <div className={classes.Column}>
                             <div className="form-group row">
-                                <label htmlFor="name" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
+                                <label htmlFor="firstName" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={currentStudent.firstName} id="name" {...bindName} />
+                                    <input type="text" className="form-control" value={currentStudent.firstName} id="firstName" {...bindFirstName} />
                                 </div>
                             </div>
 
@@ -79,9 +79,9 @@ const Student = (props) => {
                             </div>
 
                             <div className="form-group row">
-                                <label htmlFor="birthday" className="col-sm-2 col-form-label"><strong>Fecha de nacimiento:</strong></label>
+                                <label htmlFor="birthDate" className="col-sm-2 col-form-label"><strong>Fecha de nacimiento:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="date" className="form-control" id="birthday" value={currentStudent.birthDate} {...bindBirthday} />
+                                    <input type="date" className="form-control" id="birthDate" value={currentStudent.birthDate} {...bindBirthDate} />
                                 </div>
                             </div>
 
@@ -102,16 +102,16 @@ const Student = (props) => {
                             </div>
 
                             <div className="form-group row">
-                                <label htmlFor="carrer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
+                                <label htmlFor="collageCareer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" id="carrer" value={currentStudent.career} {...bindCareer} />
+                                    <input type="text" className="form-control" id="collageCareer" value={currentStudent.collageCareer} {...bindCollageCareer} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="phone" className="col-sm-2 col-form-label"><strong>Teléfono:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="tel" className="form-control" id="phone" value={currentStudent.phone} {...bindPhone} />
+                                    <input type="tel" className="form-control" id="phone" value={currentStudent.phone} {...bindPhoneNumber} />
                                 </div>
                             </div>
                         </div>
