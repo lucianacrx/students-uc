@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-const API_URL = 'http://localhost:3003'; // todo
+const API_URL = 'http://161.35.56.100:3003';
 
 class StudentDataService {
   getAll() {
@@ -12,15 +12,15 @@ class StudentDataService {
   }
 
   create(data) {
-    return http.post("/students", data);
+    return http.post(`${API_URL}/api/v1/students/`, data);
   }
 
   update(id, data) {
-    return http.put(`/students/${id}`, data);
+    return http.put(`${API_URL}/api/v1/students/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/students/${id}`);
+    return http.delete(`${API_URL}/api/v1/students/${id}`);
   }
 }
 
