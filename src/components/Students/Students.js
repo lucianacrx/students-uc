@@ -5,7 +5,7 @@ import StudentItem from '../StudentItem/StudentItem';
 import StudentService from '../../services/student.service';
 
 const Students = () => {
-    const [ students, setStudents ] = useState({});
+    const [ students, setStudents ] = useState([]);
 
     useEffect(() => {    
         StudentService.getAll()
@@ -27,6 +27,7 @@ const Students = () => {
                         </Link>
                     ))
                 }
+                { students.length === 0 && 'No hay estudiantes para mostrar' }
             </div>
         </div>      
     );
