@@ -29,6 +29,12 @@
     padding: 0 15px;
 }
 
+.Toolbar nav ul a:hover,
+.Toolbar nav ul a:active {
+    text-decoration: underline;
+    padding-bottom: 3px;
+}
+
 .Logo {
     height: 100%;
     display: flex;

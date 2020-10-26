@@ -1,60 +1,35 @@
-import React from 'react';
-import logo from '../../assets/images/logo.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './Students.module.css';
+import StudentItem from '../StudentItem/StudentItem';
+import StudentService from '../../services/student.service';
 
-const students = () => {
+const Students = () => {
+    const [ students, setStudents ] = useState({});
+
+    useEffect(() => {    
+        StudentService.getAll()
+          .then(response => {
+              const students = response.data;
+              setStudents(students);
+          });
+    }, []);
+
     return (
-        <div className="container-fluid mx-5 mt-4">
-            <h2>Listado de estudiantes - Proyecto 2</h2>
-            <hr className={classes.Divider}/>
+        <div className="container-fluid px-5 mt-4">
+            <h2>Listado de estudiantes</h2>
+            <hr className="Divider"/>
             <div className={classes.GridContainer}>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
-                <div className={classes.UserItem}>
-                    <img src={logo} alt="Student avatar" />
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse aliquid laboriosam minima ex praesentium recusandae.
-                </div>
+                {
+                    students && students.map(student => (
+                        <Link to={'/' + student.id}>
+                            <StudentItem student={student}/>
+                        </Link>
+                    ))
+                }
             </div>
         </div>      
     );
 };
 
-export default students;
+export default Students;

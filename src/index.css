@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.Divider {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-left: 0;
+}

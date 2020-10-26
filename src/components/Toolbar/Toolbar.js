@@ -13,7 +13,7 @@ const toolbar = () => {
             <nav>
                 <ul>
                     <Link to="/">Inicio</Link>
-                    <Link to="/">Agregar</Link>
+                    <Link to="/add">Agregar</Link>
                 </ul>
             </nav>
         </header>

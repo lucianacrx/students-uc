@@ -1,0 +1,19 @@
+.StudentItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid rgb(206, 205, 205);
+}
+
+.StudentItem img {
+    border-radius: 50%;
+    height: 50px;
+    width: auto;
+    float: left;
+}
+
+.StudentItem div {
+    padding-left: 15px;
+}
