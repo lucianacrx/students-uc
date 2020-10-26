@@ -18,7 +18,7 @@ const Student = (props) => {
             .then(response => {
                 setCurrentStudent(response.data);
             });
-    }, []);
+    }, [props.match.params.id]);
 
     const edit = () => {
         const student = {
@@ -67,7 +67,7 @@ const Student = (props) => {
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={currentStudent.name} id="name" {...bindName} />
+                                    <input type="text" className="form-control" value={currentStudent.firstName} id="name" {...bindName} />
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@ const Student = (props) => {
                             <div className="form-group row">
                                 <label htmlFor="birthday" className="col-sm-2 col-form-label"><strong>Fecha de nacimiento:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="date" className="form-control" id="birthday" value={currentStudent.birthday} {...bindBirthday} />
+                                    <input type="date" className="form-control" id="birthday" value={currentStudent.birthDate} {...bindBirthday} />
                                 </div>
                             </div>
 

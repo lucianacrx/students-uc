@@ -1,12 +1,14 @@
 import http from "../http-common";
 
+const API_URL = 'http://localhost:3003'; // todo
+
 class StudentDataService {
   getAll() {
-    return http.get("/students");
+    return http.get(`${API_URL}/api/v1/students`);
   }
 
   get(id) {
-    return http.get(`/students/${id}`);
+    return http.get(`${API_URL}/api/v1/students/${id}`);
   }
 
   create(data) {

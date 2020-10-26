@@ -10,7 +10,7 @@ const Students = () => {
     useEffect(() => {    
         StudentService.getAll()
           .then(response => {
-              const students = response.data;
+              const students = response.data.payload;
               setStudents(students);
           });
     }, []);
