@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import StudentService from '../../services/student.service';
 import { useInput } from '../../hooks/useInput';
 
-const AddStudent = () => {
+const AddStudent = (props) => {
     const { value: firstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
     const { value: lastName, bind: bindLastName, reset: resetLastName } = useInput('');
     const { value: birthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
@@ -36,7 +36,7 @@ const AddStudent = () => {
                 resetCollageCareer();
                 resetAddress();
                 resetPhoneNumber();
-                this.props.history.push("/");
+                props.history.push("/");
             })
             .catch(error => {
                 console.log(error);

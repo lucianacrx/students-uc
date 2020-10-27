@@ -9,7 +9,8 @@ const Student = (props) => {
     const { value: lastName, setValue: setLastName, bind: bindLastName, reset: resetLastName } = useInput('');
     const { value: birthDate, setValue: setBirthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
     const { value: gender, setValue: setGender, bind: bindGender, reset: resetGender } = useInput('');
-    const { value: studentId, setValue: setStudentId, bind: bindStudentId, reset: resetStudentId } = useInput('');
+    const { value: studentId, setValue: setStudentId, bind: bindStudentId } = useInput('');
+    const { value: address, setValue: setAddress } = useInput('');
     const { value: collageCareer, setValue: setCollageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
     const { value: phoneNumber, setValue: setPhoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
     const [ loaded, setLoaded ] = useState(false);
@@ -22,11 +23,12 @@ const Student = (props) => {
                 setBirthDate(response.data.birthDate);
                 setGender(response.data.gender);
                 setCollageCareer(response.data.collageCareer);
+                setAddress(response.data.address);
                 setPhoneNumber(response.data.phoneNumber);
                 setStudentId(response.data.studentId);
                 setLoaded(true);
             });
-    }, []);
+    }, [props.match.params.id]);
 
     const edit = () => {
         const student = {
@@ -35,7 +37,9 @@ const Student = (props) => {
             birthDate: birthDate,
             gender: gender,
             collageCareer: collageCareer,
-            phoneNumber: phoneNumber
+            phoneNumber: phoneNumber,
+            studentId: studentId,
+            address: address
         }
 
         StudentService.update(props.match.params.id, student)
@@ -75,7 +79,7 @@ const Student = (props) => {
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={firstName } id="firstName" {...bindFirstName} />
+                                    <input type="text" className="form-control" value={firstName} id="firstName" {...bindFirstName} />
                                 </div>
                             </div>
 

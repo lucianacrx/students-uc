@@ -7,11 +7,11 @@ import StudentService from '../../services/student.service';
 const Students = () => {
     const [ students, setStudents ] = useState([]);
 
-    useEffect(() => {    
+    useEffect(() => {
         StudentService.getAll()
           .then(response => {
-              const students = response.data.payload;
-              setStudents(students);
+                const students = response.data.payload;
+                setStudents(students);
           });
     }, []);
 
