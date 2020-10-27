@@ -22,7 +22,7 @@ const Students = () => {
             <div className={classes.GridContainer}>
                 {
                     students && students.map(student => (
-                        <Link to={'/' + student.id}>
+                        <Link to={'/' + student.id} key={student.id}>
                             <StudentItem student={student}/>
                         </Link>
                     ))

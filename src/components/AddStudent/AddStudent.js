@@ -10,6 +10,7 @@ const AddStudent = () => {
     const { value: gender, bind: bindGender, reset: resetGender } = useInput('');
     const { value: studentId, bind: bindStudentId, reset: resetStudentId } = useInput('');
     const { value: collageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
+    const { value: address, bind: bindAddress, reset: resetAddress } = useInput('');
     const { value: phoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
 
     const add = () => {
@@ -20,7 +21,9 @@ const AddStudent = () => {
             gender: gender,
             studentId: studentId,
             collageCareer: collageCareer,
-            phoneNumber: phoneNumber
+            address: address,
+            phoneNumber: phoneNumber,
+            status: 1
         };
 
         StudentService.create(student)
@@ -31,6 +34,7 @@ const AddStudent = () => {
                 resetGender();
                 resetStudentId();
                 resetCollageCareer();
+                resetAddress();
                 resetPhoneNumber();
                 this.props.history.push("/");
             })
@@ -85,6 +89,13 @@ const AddStudent = () => {
                         <label htmlFor="collageCareer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
                         <div className="col-sm-10">
                             <input type="text" className="form-control" id="collageCareer" {...bindCollageCareer} />
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="address" className="col-sm-2 col-form-label"><strong>Dirección:</strong></label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" id="address" {...bindAddress} />
                         </div>
                     </div>
 

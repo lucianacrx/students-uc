@@ -12,7 +12,7 @@ class StudentDataService {
   }
 
   create(data) {
-    return http.post(`${API_URL}/api/v1/students/`, data);
+    return http.post(`${API_URL}/api/v1/students/`, data).catch(e => console.log(e));
   }
 
   update(id, data) {

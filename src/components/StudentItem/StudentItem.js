@@ -9,7 +9,7 @@ const studentItem = (props) => {
         <div className={classes.StudentItem}>
             <img src={logo} alt="Student avatar" />
             <div>
-            <Link><h5>{props.student.firstName} {props.student.lastName}</h5></Link>
+            <h5>{props.student.firstName} {props.student.lastName}</h5>
                 <p className="mb-0">Matrícula: {props.student.studentId}</p>
             </div>
         </div>

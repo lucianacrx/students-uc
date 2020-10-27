@@ -5,20 +5,28 @@ import StudentService from '../../services/student.service';
 import { useInput } from '../../hooks/useInput';
 
 const Student = (props) => {
-    const { value: firstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
-    const { value: lastName, bind: bindLastName, reset: resetLastName } = useInput('');
-    const { value: birthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
-    const { value: gender, bind: bindGender, reset: resetGender } = useInput('');
-    const { value: collageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
-    const { value: phoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
-    const [ currentStudent, setCurrentStudent ] = useState({});
+    const { value: firstName, setValue: setFirstName, bind: bindFirstName, reset: resetFirstName } = useInput('');
+    const { value: lastName, setValue: setLastName, bind: bindLastName, reset: resetLastName } = useInput('');
+    const { value: birthDate, setValue: setBirthDate, bind: bindBirthDate, reset: resetBirthDate } = useInput('');
+    const { value: gender, setValue: setGender, bind: bindGender, reset: resetGender } = useInput('');
+    const { value: studentId, setValue: setStudentId, bind: bindStudentId, reset: resetStudentId } = useInput('');
+    const { value: collageCareer, setValue: setCollageCareer, bind: bindCollageCareer, reset: resetCollageCareer } = useInput('');
+    const { value: phoneNumber, setValue: setPhoneNumber, bind: bindPhoneNumber, reset: resetPhoneNumber } = useInput('');
+    const [ loaded, setLoaded ] = useState(false);
 
     useEffect(() => {    
           StudentService.get(props.match.params.id)
             .then(response => {
-                setCurrentStudent(response.data);
+                setFirstName(response.data.firstName);
+                setLastName(response.data.lastName);
+                setBirthDate(response.data.birthDate);
+                setGender(response.data.gender);
+                setCollageCareer(response.data.collageCareer);
+                setPhoneNumber(response.data.phoneNumber);
+                setStudentId(response.data.studentId);
+                setLoaded(true);
             });
-    }, [props.match.params.id]);
+    }, []);
 
     const edit = () => {
         const student = {
@@ -38,7 +46,7 @@ const Student = (props) => {
                 resetGender();
                 resetCollageCareer();
                 resetPhoneNumber();
-                this.props.history.push("/");
+                props.history.push("/");
             })
             .catch(error => {
                 console.log(error);
@@ -48,7 +56,7 @@ const Student = (props) => {
     const deleteStudent = () => {
         StudentService.delete(props.match.params.id)
             .then(response => {
-                this.props.history.push("/");
+                props.history.push("/");
             })
             .catch(error => {
                 console.log(error);
@@ -60,35 +68,35 @@ const Student = (props) => {
             <h2>Detalle de estudiante</h2>
             <hr className={classes.Divider}/>
             {
-                currentStudent ? 
+                loaded ? 
                 <form>
                     <div className={classes.InfoContainer}>
                         <div className={classes.Column}>
                             <div className="form-group row">
                                 <label htmlFor="firstName" className="col-sm-2 col-form-label"><strong>Nombre:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={currentStudent.firstName} id="firstName" {...bindFirstName} />
+                                    <input type="text" className="form-control" value={firstName } id="firstName" {...bindFirstName} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="lastName" className="col-sm-2 col-form-label"><strong>Apellido:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" value={currentStudent.lastName} id="lastName" {...bindLastName} />
+                                    <input type="text" className="form-control" value={lastName} id="lastName" {...bindLastName} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="birthDate" className="col-sm-2 col-form-label"><strong>Fecha de nacimiento:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="date" className="form-control" id="birthDate" value={currentStudent.birthDate} {...bindBirthDate} />
+                                    <input type="date" className="form-control" id="birthDate" value={birthDate} {...bindBirthDate} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="gender" className="col-sm-2 col-form-label"><strong>Sexo:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" maxLength="1" className="form-control" value={currentStudent.gender} id="gender" {...bindGender} />
+                                    <input type="text" maxLength="1" className="form-control" value={gender} id="gender" {...bindGender} />
                                 </div>
                             </div>
                         </div>
@@ -97,21 +105,21 @@ const Student = (props) => {
                             <div className="form-group row">
                                 <label htmlFor="studentId" className="col-sm-2 col-form-label"><strong>Matrícula:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" id="studentId" value={currentStudent.studentId} readOnly />
+                                    <input type="text" className="form-control" id="studentId" value={studentId} readOnly {...bindStudentId} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="collageCareer" className="col-sm-2 col-form-label"><strong>Carrera:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" id="collageCareer" value={currentStudent.collageCareer} {...bindCollageCareer} />
+                                    <input type="text" className="form-control" id="collageCareer" value={collageCareer} {...bindCollageCareer} />
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <label htmlFor="phone" className="col-sm-2 col-form-label"><strong>Teléfono:</strong></label>
                                 <div className="col-sm-10">
-                                    <input type="tel" className="form-control" id="phone" value={currentStudent.phone} {...bindPhoneNumber} />
+                                    <input type="tel" className="form-control" id="phone" value={phoneNumber} {...bindPhoneNumber} />
                                 </div>
                             </div>
                         </div>
